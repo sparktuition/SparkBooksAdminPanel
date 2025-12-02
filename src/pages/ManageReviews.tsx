@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { db } from '../firebase'
 import { collection, onSnapshot, query, orderBy, deleteDoc, doc } from 'firebase/firestore'
+import './ManageReviews.css'
 
 type Review = { id?: string; author?: string; text: string; bookId?: string }
 

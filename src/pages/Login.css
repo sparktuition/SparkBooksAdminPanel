@@ -1,0 +1,160 @@
+/* Login.css */
+
+/* --- General Variables and Reset --- */
+:root {
+  --primary-color: #4a5568; /* Dark, professional primary color */
+  --accent-color: #3182ce; /* A nice blue for action/signup link */
+  --background-light: #f7f9fb; /* Very light, clean body background */
+  --text-dark: #2d3748; /* Dark gray for text */
+  --error-color: #e53e3e; /* Red for errors */
+  --border-radius-md: 8px;
+  --box-shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Set body background for full-screen effect */
+body {
+    background-color: var(--background-light);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures vertical centering */
+}
+
+/* --- Panel Container (The Login Box) --- */
+.panel-content {
+  background-color: white;
+  padding: 40px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-subtle);
+  max-width: 400px; /* Standard login box width */
+  width: 90%; /* Responsive width */
+  box-sizing: border-box;
+  text-align: center; /* Center the heading */
+}
+
+.panel-content h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* --- Form Styles --- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Label/Input Group */
+.form label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  gap: 8px;
+}
+
+/* Input Styling */
+.form input[type="email"],
+.form input[type="password"] {
+  padding: 12px 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--text-dark);
+}
+
+/* Focus State */
+.form input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 1px var(--accent-color);
+  outline: none;
+}
+
+/* --- Button Styles (Login) --- */
+.form > div { /* Target the div containing the login button */
+    margin-top: 5px;
+}
+
+.form button[type="submit"] {
+  padding: 12px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  width: 100%;
+}
+
+.form button[type="submit"]:hover:not(:disabled) {
+  background-color: #2d3748; /* Slightly darker on hover */
+}
+
+/* Disabled/Loading State */
+.form button[type="submit"]:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* --- Error Message Style --- */
+/* Targeting the inline style div based on your component structure */
+.panel-content > div[style*="color: rgb(185, 28, 28)"] {
+    color: var(--error-color) !important; /* Override inline color if necessary */
+    background-color: #fed7d7;
+    padding: 10px;
+    border-radius: var(--border-radius-sm);
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 10px !important;
+    border: 1px solid var(--error-color);
+}
+
+
+/* --- Sign Up Link/Button Style --- */
+.panel-content > div[style*="margin-top"] { /* Target the sign-up container div */
+    margin-top: 20px !important;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.panel-content > div[style*="margin-top"] button {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.panel-content > div[style*="margin-top"] button:hover {
+    color: #2b6cb0;
+    text-decoration: underline;
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 450px) {
+  .panel-content {
+    padding: 30px 20px;
+    margin: 20px; /* Add margin around the box on very small screens */
+  }
+}

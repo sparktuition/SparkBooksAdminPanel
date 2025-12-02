@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { auth } from '../firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import './Login.css'
 
 type Props = {
   onLogin: (email: string) => void

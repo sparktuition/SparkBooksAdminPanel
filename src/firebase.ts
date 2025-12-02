@@ -9,8 +9,8 @@ const firebaseConfig = {
   apiKey: "AIzaSyAIrDjFDHg6ziZ0E7fEGYkA8vqEepRRItw",
   authDomain: "the-spark-books.firebaseapp.com",
   projectId: "the-spark-books",
-  // Use the appspot.com bucket name for Storage SDK configuration
-  storageBucket: "the-spark-books.appspot.com",
+  // Use the correct bucket name that has CORS configured
+  storageBucket: "the-spark-books.firebasestorage.app",
   messagingSenderId: "219292792958",
   appId: "1:219292792958:web:37102675b97a0b697c402f",
   measurementId: "G-7MCT3M96R7",
@@ -27,13 +27,19 @@ if (typeof window !== 'undefined') {
 }
 
 const db = getFirestore(app)
-const storage = getStorage(app)
+// Use the correct bucket name that matches the CORS configuration
+const storage = getStorage(app, 'gs://the-spark-books.firebasestorage.app')
 const auth = getAuth(app)
 
 // Ensure there is an authenticated Firebase user for operations that require auth (e.g., Storage writes)
 export async function ensureAuth() {
   if (!auth.currentUser) {
-    await signInAnonymously(auth)
+    try {
+      await signInAnonymously(auth)
+    } catch (error) {
+      console.error('Anonymous sign-in failed:', error)
+      throw error
+    }
   }
 }
 

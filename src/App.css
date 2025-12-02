@@ -1,143 +1,207 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+
+/* --- General Variables and Base Reset --- */
+:root {
+  --primary-color: #4a5568; /* Dark, professional primary color */
+  --accent-color: #3182ce; /* Bright action color */
+  --background-base: #f7f9fb; /* Main content area background */
+  --topbar-bg: #ffffff; /* White top navigation bar */
+  --sidebar-bg: #ffffff; /* White sidebar */
+  --text-dark: #2d3748;
+  --text-light: #4a5568;
+  --border-color-light: #e2e8f0;
+  --header-height: 60px;
+  --sidebar-width: 220px;
+  --box-shadow-header: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --box-shadow-sidebar: 2px 0 5px rgba(0, 0, 0, 0.05);
+  --font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body, html, #root {
+  height: 100%;
+  font-family: var(--font-family);
+  background-color: var(--background-base);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* Admin layout */
+/* --- Main Layout Container --- */
 .admin-root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  color: #111;
 }
+
+/* --- Top Bar (Header) --- */
 .topbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.25rem;
-  background: linear-gradient(90deg,#fff,#f7f7fb);
-  border-bottom: 1px solid #eee;
-  color: #111;
+  align-items: center;
+  height: var(--header-height);
+  padding: 0 20px;
+  background-color: var(--topbar-bg);
+  box-shadow: var(--box-shadow-header);
+  flex-shrink: 0; /* Prevents header from shrinking */
+  z-index: 1000;
 }
-.brand {
-  margin: 0;
-  font-size: 1.125rem;
-}
-.topnav button {
-  margin-left: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  border: 1px solid #e5e7eb;
-  background: #f5f7ff !important;
-  color: #111 !important;
-  font-weight: 600;
-  opacity: 1 !important;
-  mix-blend-mode: normal;
-  cursor: pointer;
-}
-.topnav button.active { background: #111 !important; color: #fff !important; border-color: #111 }
 
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* Top Navigation (Only visible on mobile/unauthed state) */
+.topnav {
+  display: none; /* Hide top nav by default on desktop for authed view */
+}
+
+.topnav button {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+  font-weight: 500;
+}
+
+.topnav button:hover {
+  background-color: var(--border-color-light);
+}
+
+.topnav button.active {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+}
+
+/* --- Main Content Area (Sidebar + Content) --- */
 .main-area {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  width: 100%;
-  box-sizing: border-box;
+  display: grid;
+  flex-grow: 1;
+  /* Desktop Layout: Sidebar | Content */
+  grid-template-columns: var(--sidebar-width) 1fr; 
+  background-color: var(--background-base);
 }
+
+/* --- Sidebar (Navigation) --- */
 .sidebar {
-  width: 220px;
-  flex: 0 0 220px;
-  border-right: 1px solid #eee;
-  padding-right: 1rem;
+  background-color: var(--sidebar-bg);
+  padding-top: 20px;
+  border-right: 1px solid var(--border-color-light);
+  box-shadow: var(--box-shadow-sidebar);
+  display: block; /* Visible by default on desktop */
 }
-.sidebar ul { list-style: none; padding: 0; margin: 0 }
-.sidebar li { margin-bottom: 0.5rem }
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 5px;
+}
+
 .sidebar button {
+  display: block;
   width: 100%;
   text-align: left;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: #111;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-left 0.2s;
+  border-left: 4px solid transparent;
 }
-.sidebar button.active { background: #0b5fff; color: #fff }
 
+.sidebar button:hover {
+  background-color: var(--background-base);
+  color: var(--text-dark);
+}
+
+.sidebar button.active {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+  border-left-color: var(--accent-color);
+}
+
+/* --- Content Section --- */
 .content {
-  flex: 1 1 auto;
-  padding: 0.5rem 1rem;
+  padding: 20px;
+  overflow-y: auto; /* Allows content area to scroll independently */
 }
 
-.panel-content { background: #fff; border: 1px solid #eee; padding: 1rem; border-radius: 8px }
-.form label { display: block; margin-bottom: 0.75rem }
-.form input[type="text"], .form input, .form textarea { width: 100%; padding: 0.5rem; margin-top: 0.25rem; box-sizing: border-box }
-.form textarea { min-height: 100px }
-.form button { padding: 0.5rem 0.75rem; border-radius: 6px }
-
-.list { list-style: none; padding: 0; margin: 0 }
-.list-item { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 0.75rem; border-bottom: 1px solid #f0f0f0 }
-
-/* Responsive adjustments */
-@media (max-width: 900px) {
-  .sidebar { display: none }
-  .topbar { flex-wrap: wrap }
-  .topnav {
+/* --- Unauthed View (Login/Signup) --- */
+/* Ensure the content section for the Login/Signup view takes up the whole main area */
+.admin-root .main-area .content {
+    grid-column: 1 / -1; /* Span full width when unauthed */
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-  .topnav button {
-    margin-left: 0;
-    margin-right: 0.25rem;
-    margin-bottom: 0.25rem;
-  }
-  .main-area { padding: 0.5rem }
+    justify-content: center;
+    align-items: flex-start; /* Align form to top */
+    padding-top: 10vh; /* Add vertical space for centering effect */
 }
 
-@media (max-width: 600px) {
-  .brand { font-size: 1rem }
-  .list-item { flex-direction: column; align-items: flex-start }
-  .topnav button, .sidebar button { padding: 0.5rem }
+/* --- Media Queries (Responsiveness) --- */
+
+/* Tablet and Mobile Views (Viewport less than 992px) */
+@media (max-width: 991px) {
+  
+  /* Collapse Sidebar layout on mobile/tablet */
+  .main-area {
+    grid-template-columns: 1fr; /* Content takes full width */
+  }
+
+  .sidebar {
+    display: none; /* Hide the sidebar */
+  }
+
+  /* Show Top Navigation for menu items */
+  .topbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 20px;
+  }
+  
+  .brand {
+      margin-bottom: 10px;
+  }
+  
+  .topnav {
+    display: flex; /* Show the top nav bar */
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 10px;
+    border-top: 1px solid var(--border-color-light);
+    padding-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .topnav button {
+      margin: 5px 8px; /* Adjust spacing in top nav */
+  }
+  
+  /* Hide the menu items that are duplicated in the top nav for mobile */
+  .topnav button:last-child {
+      /* Keep Logout button styled, but maybe adjust margin */
+      margin-top: 10px; 
+      width: 100%;
+      order: 10; /* Push logout to a new line */
+  }
+
+  /* Unauthed view needs to adjust centering if topbar is taller */
+  .admin-root .main-area .content {
+    padding-top: 5vh; 
+  }
 }

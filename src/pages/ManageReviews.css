@@ -1,0 +1,140 @@
+/* ManageReviews.css */
+
+/* --- General Variables --- */
+:root {
+  --primary-color: #5c67f2; /* A modern, inviting blue/purple */
+  --delete-color: #e34a65; /* A clear, impactful red for deletion */
+  --text-dark: #2c3e50; /* Primary text color */
+  --text-muted: #7f8c8d; /* Secondary text/small tags */
+  --background-light: #f4f6f9; /* Light, calming background */
+  --list-bg-item: #ffffff; /* White background for list items */
+  --border-color: #ecf0f1; /* Very light border */
+  --border-radius-md: 8px;
+  --box-shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.04);
+  --font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* --- Panel Container --- */
+.panel-content {
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: var(--background-light); /* Use light background for the whole panel */
+  border-radius: var(--border-radius-md);
+  font-family: var(--font-family);
+  color: var(--text-dark);
+}
+
+.panel-content h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: var(--text-dark);
+  border-left: 5px solid var(--primary-color);
+  padding-left: 15px;
+}
+
+/* --- Review List Structure --- */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Spacing between list items */
+}
+
+/* --- Individual Review Item --- */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: var(--list-bg-item);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-subtle);
+  transition: box-shadow 0.2s;
+}
+
+.list-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Review Details (Text Section) --- */
+.list-item > div:first-child {
+    flex-grow: 1;
+    padding-right: 15px; /* Space before button */
+    min-width: 0; /* Ensures content respects width limits */
+}
+
+.list-item strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--primary-color); /* Highlight author name */
+}
+
+.list-item p {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  margin: 0;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.list-item small {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+
+/* --- Action Button (Delete) --- */
+.list-item > div:last-child {
+    flex-shrink: 0; /* Prevents button from shrinking */
+}
+
+.list-item button {
+  padding: 8px 15px;
+  background-color: var(--delete-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.list-item button:hover {
+  background-color: #c4334c; /* Darker red on hover */
+  transform: translateY(-1px);
+}
+
+/* --- Responsiveness --- */
+
+/* Adjust layout for smaller screens */
+@media (max-width: 650px) {
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+  
+  .list-item > div:first-child {
+      padding-right: 0;
+      width: 100%;
+      margin-bottom: 10px;
+  }
+  
+  .list-item > div:last-child {
+      width: 100%;
+  }
+
+  .list-item button {
+      width: 100%; /* Full width button on mobile */
+  }
+}

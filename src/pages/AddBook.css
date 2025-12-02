@@ -1,0 +1,146 @@
+/* AddBook.css */
+
+/* General Styles and Variables */
+:root {
+  --primary-color: #007bff; /* A clean blue for buttons/accents */
+  --secondary-color: #6c757d; /* Muted color for secondary text/borders */
+  --background-light: #f8f9fa; /* Light background for the content panel */
+  --text-dark: #212529; /* Primary dark text */
+  --border-radius-sm: 4px;
+  --border-radius-lg: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Panel Content Container */
+.panel-content {
+  padding: 30px 20px;
+  max-width: 800px;
+  margin: 0 auto; /* Center the form panel */
+  background-color: #ffffff;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow);
+  font-family: var(--font-family);
+  color: var(--text-dark);
+}
+
+.panel-content h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: var(--text-dark);
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Form Styles */
+.form.add-book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Label and Input Group */
+.form.add-book-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--text-dark);
+  gap: 8px;
+}
+
+/* Input/Textarea Base Styling */
+.form.add-book-form input[type="text"],
+.form.add-book-form textarea {
+  padding: 12px 15px;
+  border: 1px solid #ced4da;
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box; /* Important for padding/width calculation */
+}
+
+/* Focus State */
+.form.add-book-form input[type="text"]:focus,
+.form.add-book-form textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Textarea specific */
+.form.add-book-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* File Input Styling (can be tricky to style, focusing on the label/context) */
+.form.add-book-form input[type="file"] {
+  padding: 10px 0; /* Keep default file input appearance but add vertical spacing */
+  border: none;
+  background: none;
+}
+
+/* Image Preview */
+.image-preview {
+  margin-top: 10px;
+  border: 1px dashed var(--secondary-color);
+  border-radius: var(--border-radius-sm);
+  padding: 10px;
+  max-width: 200px; /* Limit preview size */
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-sm);
+  display: block;
+  margin: 0 auto;
+}
+
+/* Form Actions and Button */
+.form-actions {
+  margin-top: 10px;
+}
+
+.form-actions button {
+  padding: 12px 25px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  width: 100%; /* Full width button */
+}
+
+.form-actions button:hover:not(:disabled) {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Disabled State for Loading */
+.form-actions button:disabled {
+  background-color: var(--secondary-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- Responsiveness (Mobile First) --- */
+
+/* For screens wider than 600px (Tablets and Desktops) */
+@media (min-width: 600px) {
+  .panel-content {
+    padding: 40px;
+  }
+  
+  .form-actions button {
+    width: auto; /* Revert to natural width on larger screens */
+    float: right; /* Align button to the right */
+  }
+}
